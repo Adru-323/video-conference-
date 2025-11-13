@@ -1,0 +1,37 @@
+1. const server = createServer()
+Ye ek khali HTTP server banata hai jo abhi sirf low-level Node.js HTTP requests handle kar sakta hai.
+Abhi usse Express ka pata hi nahi hai.
+
+2. const server = createServer(app)
+Yaha tumne Express app uske andar pass kar diya.
+Matlab ab wo HTTP server Express ko “use” karega.
+Jo bhi request aayegi (GET /, POST /login) wo Express app handle karega.
+Toh yes 👍 ye basically ek instance banata hai jisme Express “attach” ho jaata hai.
+
+3. new Server(server)
+Yaha Server ka matlab hai Socket.IO server.
+Jab tum server pass karte ho, toh Socket.IO usi HTTP server instance pe chipak jaata hai.
+Matlab: Express aur Socket.IO dono ek hi underlying server use karte hain.
+
+
+
+const app = express();            // Express banaya
+const server = createServer(app); // Express ko HTTP server ke andar pass kiya
+const io = new Server(server);    // Socket.IO ko usi server pe chipka diya
+Express → HTTP requests handle karega
+
+Socket.IO → WebSocket / real-time events handle karega
+
+Dono ek single port pe chalenge
+
+================================================================================================
+Socket.IO event:
+
+(data, sender, ...more) → ye sirf wahi cheezein hain jo tumne emit ke through bheji.
+
+Isme koi fixed req/res nahi hota.
+
+Agar server ko client ko reply bhejna hai, to socket.emit() ya io.emit() use karte ho, callback parameter use kar sakte ho.
+===================================
+                CREATECONTEXT
+It allows you to share data between components without passing props manually through every level (avoiding “prop drilling”).
